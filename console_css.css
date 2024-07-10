@@ -1,0 +1,138 @@
+@import 'https://fonts.googleapis.com/css?family=Ubuntu';
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #222, #000);
+    color: #0F0;
+    font-family: 'Ubuntu', sans-serif; 
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.window {
+    width : 800px; 
+    margin : 75px auto; 
+    background : #2c3e50; 
+    height : 550px; 
+    border-radius : 5px;
+    /* display : relative;  */
+    box-shadow: 5px 5px 5px  #5c5757;
+    z-index: 1;
+}
+
+.afterclose {
+    color : #34495e; 
+    display: none; 
+    text-align: center; 
+    z-index: 1;
+}
+
+.open {
+    height: 80;
+    width: 50;
+    color : #fff; 
+    padding : 15px; 
+    background: #801325; 
+    border-radius: 15px; 
+    border: none;
+}
+
+.bash {
+    width : 800px; 
+    background : #34495e; 
+    height : 510px; 
+    border-radius : 5px;
+    top: 40px;
+    display : absolute; 
+    color : #fff;
+}
+
+/* effected by controllers */
+
+.windowmax {
+    width : 100%; 
+    margin : auto; 
+    background : #2c3e50; 
+    height : 1000px; 
+    border-radius : 5px;
+    display : relative; 
+}
+
+.windowmin {
+    width : 300px; 
+    height : 45px;
+    background : #2c3e50; 
+    border-radius : 5px; 
+    bottom : 0; 
+    position: fixed;
+}
+
+.bashmax {
+    display : absolute; 
+    width : 100%; 
+    background : #34495e; 
+    height : 960px ; 
+    border-radius : 5px;
+    bottom: 0;
+    color : #fff;
+}
+
+/* !--end--! */
+
+.buttons {
+    width : 15px;
+    height : 15px; 
+    border-radius: 50%;
+    float : right; 
+    margin : 13px 4px;
+    border: none; 
+}
+
+.close {
+    background : #e74c3c;
+}
+
+.maximize{
+    background : #f1c40f;
+}
+
+.minimize{
+    background : #2ecc71;
+}
+
+.result {
+    display : none;
+}
+
+.controls {
+    height : 40px; 
+    top : 0; 
+}
+
+.title {
+    color : #fff; 
+    font-weight: bold; 
+    padding : 10px;
+}
+
+.bigtext {
+    margin-bottom: 10px;
+}
+
+#spanQ {
+    display: none;
+}
+
+#getResume{
+    display: none;
+}
