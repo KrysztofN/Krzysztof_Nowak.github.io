@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css?family=Ubuntu';
+
 body {
     margin: 0;
     overflow: hidden;
@@ -19,124 +20,109 @@ canvas {
     z-index: 0;
 }
 
+/* Window Styles */
 .window {
-    width : 800px; 
-    margin : 75px auto; 
-    background : #2c3e50; 
-    height : 550px; 
-    border-radius : 5px;
-    /* display : relative;  */
-    box-shadow: 5px 5px 5px  #5c5757;
+    width: 800px; 
+    margin: 75px auto; 
+    background: #2c3e50; 
+    height: 550px; 
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #5c5757;
     z-index: 1;
 }
 
 .afterclose {
-    color : #34495e; 
+    color: #34495e; 
     display: none; 
     text-align: center; 
     z-index: 1;
 }
 
 .open {
-    height: 80;
-    width: 50;
-    color : #fff; 
-    padding : 15px; 
+    height: 80px;
+    width: 50px;
+    color: #fff; 
+    padding: 15px; 
     background: #018f33; 
     border-radius: 15px; 
     border: none;
 }
 
 .bash {
-    width : 800px; 
-    background : #34495e; 
-    height : 510px; 
-    border-radius : 5px;
+    width: 800px; 
+    background: #34495e; 
+    height: 510px; 
+    border-radius: 5px;
     top: 40px;
-    display : absolute; 
-    color : #fff;
+    display: absolute; 
+    color: #fff;
 }
 
-/* effected by controllers */
-
+/* Window Control States */
 .windowmax {
-    width : 100%; 
-    margin : auto; 
-    background : #2c3e50; 
-    height : 1000px; 
-    border-radius : 5px;
-    display : relative; 
+    width: 100%; 
+    margin: auto; 
+    background: #2c3e50; 
+    height: 1000px; 
+    border-radius: 5px;
+    display: relative; 
 }
 
 .windowmin {
-    width : 300px; 
-    height : 45px;
-    background : #2c3e50; 
-    border-radius : 5px; 
-    bottom : 0; 
+    width: 300px; 
+    height: 45px;
+    background: #2c3e50; 
+    border-radius: 5px; 
+    bottom: 0; 
     position: fixed;
 }
 
 .bashmax {
-    display : absolute; 
-    width : 100%; 
-    background : #34495e; 
-    height : 960px ; 
-    border-radius : 5px;
+    display: absolute; 
+    width: 100%; 
+    background: #34495e; 
+    height: 960px; 
+    border-radius: 5px;
     bottom: 0;
-    color : #fff;
+    color: #fff;
 }
 
-/* !--end--! */
-
+/* Control Buttons */
 .buttons {
-    width : 15px;
-    height : 15px; 
+    width: 15px;
+    height: 15px; 
     border-radius: 50%;
-    float : right; 
-    margin : 13px 4px;
+    float: right; 
+    margin: 13px 4px;
     border: none; 
 }
 
-.close {
-    background : #e74c3c;
-}
+.close { background: #e74c3c; }
+.maximize { background: #f1c40f; }
+.minimize { background: #2ecc71; }
 
-.maximize{
-    background : #f1c40f;
-}
-
-.minimize{
-    background : #2ecc71;
-}
-
-.result {
-    display : none;
-}
-
+/* Controls and Title */
 .controls {
-    height : 40px; 
-    top : 0; 
+    height: 40px; 
+    top: 0; 
 }
 
 .title {
-    color : #fff; 
+    color: #fff; 
     font-weight: bold; 
-    padding : 10px;
+    padding: 10px;
 }
 
-.bigtext {
-    margin-bottom: 10px;
+/* Terminal Elements */
+.result { display: none; }
+.bigtext { margin-bottom: 10px; }
+#spanQ { display: none; }
+#getResume { 
+    display: inline-block; 
+    -webkit-spellcheck: false;
 }
 
-#spanQ {
-    display: none;
-}
-
-#getResume{
-    display: inline-block;
-}
-
+/* Available Commands Section */
 #availableCommands {
     margin: 10px 0;
     font-family: 'Consolas', monospace;
@@ -167,6 +153,7 @@ canvas {
     margin: 10px 0;
 }
 
+/* Social Links Section */
 #socialLinks {
     margin: 10px 0;
     font-family: 'Consolas', monospace;
@@ -184,7 +171,7 @@ canvas {
 .social-label {
     color: #95a5a6;
     display: inline-block;
-    width: 100px;  /* Fixed width for alignment */
+    width: 100px;
 }
 
 .social-item a {
@@ -196,4 +183,94 @@ canvas {
 .social-item a:hover {
     text-decoration: underline;
     color: #2980b9;
+}
+
+/* Sections Styling */
+#whoamiSection, #awardsSection {
+    margin-top: 10px;
+}
+
+.section-content {
+    line-height: 1.4;
+    color: #00ff00;
+}
+
+.section-header {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.section-item, .award-item {
+    color: #00ff00;
+}
+
+.award-desc {
+    color: #00cc00;
+}
+
+.award-header {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.award-year, .award-title {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.return-prompt {
+    margin-top: 20px;
+    color: #00ff00;
+}
+
+.cursor-blink {
+    animation: blink 1s infinite;
+}
+
+.about-text {
+    color: #ffffff;  
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.tech-info .section-item {
+    color: #ffffff;  
+}
+
+#awardsSection .award-header {
+    color: #ffffff;
+    font-size: 15px;  /* Slightly larger for the header */
+    font-weight: bold;
+}
+
+#awardsSection .award-year {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+#awardsSection .award-title {
+    color: #ffffff;
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+#awardsSection .award-desc {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+#socialLinks .section-header {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#socialLinks .social-item {
+    color: #ffffff;
+}
+
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }

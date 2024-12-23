@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    // Detected terminal words
     var span = $("#span");
     span.html(span.html().replace(/adnan/, '<span style="color: #3498db; font-weight: bold;">$&</span>'));
     span.html(span.html().replace(/~/, '<span style="color: #2ecc71; font-weight: bold;">$&</span>'));
@@ -85,7 +84,6 @@ $(document).ready(function() {
             selection.collapseToEnd();
         });
 
-        // Prevent drag and drop
         inputElement.on('drop', function(e) {
             e.preventDefault();
             return false;
@@ -109,11 +107,50 @@ $(document).ready(function() {
                 break;
 
             case 'sudo --show-socials':
+                $(".result, #availableCommands, #socialLinks, #spanQ, #getResume").hide();
                 $("#socialLinks").show();
+                
+                $(document).one('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        $("#socialLinks").hide();
+                        $(".result, #availableCommands, #spanQ, #getResume").show();
+                        enableTyping();
+                    }
+                });
                 break;
 
             case 'sudo --help':
                 $("#availableCommands").show();
+                break;
+            
+            case 'sudo --whoami':
+                $(".result, #availableCommands, #socialLinks, #spanQ, #getResume").hide();
+                $("#whoamiSection").show();
+                
+                $(document).one('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        $("#whoamiSection").hide();
+                        $(".result, #availableCommands, #spanQ, #getResume").show();
+                        enableTyping();
+                    }
+                });
+                break;
+
+            case 'sudo --awards':
+                $(".result, #availableCommands, #socialLinks, #spanQ, #getResume").hide();
+                $("#awardsSection").show();
+                
+                $(document).one('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        $("#awardsSection").hide();
+                        $(".result, #availableCommands, #spanQ, #getResume").show();
+                        enableTyping();
+                    }
+                });
+                break;
+
+            case 'cls':
+                $("#whoamiSection, #awardsSection, #socialLinks, #availableCommands").hide();
                 break;
 
             default:
@@ -140,11 +177,13 @@ $(document).ready(function() {
         let text = "sudo --get-info";
     
         await typingEffect(text, "showInfo", sleeptime);
-        await sleep(250);
+        await sleep(500);
         $(".result").show();
         $("#spanQ").css("display", "inline-block");
         $("#availableCommands").show();
         $("#spanQ").css("display", "inline-block");
         enableTyping();
+        $("#showInfo").hide();
+        $("#span").hide();
     })();
 });
