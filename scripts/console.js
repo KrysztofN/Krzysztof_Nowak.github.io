@@ -1,9 +1,10 @@
 $(document).ready(function() {
-
-
     // Detected terminal words
     var span = $("#span");
     span.html(span.html().replace(/adnan/, '<span style="color: #3498db; font-weight: bold;">$&</span>'));
+    span.html(span.html().replace(/~/, '<span style="color: #2ecc71; font-weight: bold;">$&</span>'));
+
+    var span = $("#spanQ");
     span.html(span.html().replace(/~/, '<span style="color: #2ecc71; font-weight: bold;">$&</span>'));
 
     var span1 = $("#span1");
@@ -36,7 +37,7 @@ $(document).ready(function() {
     }
     
     // typing effect
-    function typingEffect(text, elementid, sleeptime) {
+    function typingEffect(text, elementId, sleeptime) {
         return new Promise(resolve => {
             setTimeout(function() {
                 let i = 0;
@@ -44,11 +45,11 @@ $(document).ready(function() {
     
                 function typeWriter() {
                     if (i < text.length) {
-                        document.getElementById(elementid).innerHTML += text.charAt(i);
+                        document.getElementById(elementId).textContent += text.charAt(i);
                         i++;
                         setTimeout(typeWriter, speed);
                     } else {
-                        resolve(); // Resolve the promise when typing is complete
+                        resolve();
                     }
                 }
     
@@ -58,8 +59,80 @@ $(document).ready(function() {
     }
 
     function enableTyping() {
-        $("#getResume").attr("contenteditable", "true");
-        $("#getResume").focus();
+        const inputElement = $("#getResume");
+        
+        inputElement.css({
+            'outline': 'none',  
+            'padding': '2px',
+            '-webkit-user-select': 'text',  
+            'user-select': 'text'
+        });
+        inputElement.on('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleCommand(this.textContent.trim());
+                return false;
+            }
+        });
+
+        inputElement.on('paste', function(e) {
+            e.preventDefault();
+            const text = (e.originalEvent.clipboardData || window.clipboardData).getData('text');
+            const selection = window.getSelection();
+            const range = selection.getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(document.createTextNode(text.replace(/[\r\n]/g, '')));
+            selection.collapseToEnd();
+        });
+
+        // Prevent drag and drop
+        inputElement.on('drop', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        inputElement.attr("contenteditable", "true");
+        inputElement.focus();
+    }
+    
+    async function handleCommand(command) {
+        switch(command) {
+            case 'sudo --get-Resume':
+                const link = document.createElement('a');
+                link.href = 'assets/resume.pdf';
+                link.setAttribute('download', '');
+                link.download = 'Krzysztof_Nowak_Resume.pdf';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                break;
+
+            case 'sudo --show-socials':
+                $("#socialLinks").show();
+                break;
+
+            case 'sudo --help':
+                $("#availableCommands").show();
+                break;
+
+            default:
+                $("#commandError").html(`Command not found: ${command}`);
+                $("#commandError").show();
+                await sleep(2000);
+                $("#commandError").hide();
+        }
+
+        const inputElement = $("#getResume");
+        inputElement.text('');
+        inputElement.focus();
+        
+        const range = document.createRange();
+        const sel = window.getSelection();
+        range.selectNodeContents(inputElement[0]);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
     }
     
     (async function() {
@@ -70,48 +143,8 @@ $(document).ready(function() {
         await sleep(250);
         $(".result").show();
         $("#spanQ").css("display", "inline-block");
-
         $("#availableCommands").show();
-
         $("#spanQ").css("display", "inline-block");
         enableTyping();
-        document.addEventListener('keydown', async function(event){
-            if(event.key === 'Enter'){
-                const command = document.getElementById('getResume').innerHTML;
-                
-                switch(command) {
-                    case 'sudo --get-Resume':
-                        const link = document.createElement('a');
-                        link.href = 'assets/resume.pdf'; 
-                        link.setAttribute('download', '');
-                        link.download = 'Krzysztof_Nowak_Resume.pdf'; 
-                        link.target = '_blank';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        break;
-
-                    case 'sudo --show-socials':
-                        $("#socialLinks").show();
-                        break;
-
-                    case 'sudo --help':
-                        $("#availableCommands").show();
-                        break;
-
-                    default:
-                        $("#commandError").html(`Command not found: ${command}`);
-                        $("#commandError").show();
-                        await sleep(2000);
-                        $("#commandError").hide();
-                }
-
-                document.getElementById('getResume').innerHTML = '';
-                enableTyping();
-            }
-        })
-    
     })();
-    
-
 });
