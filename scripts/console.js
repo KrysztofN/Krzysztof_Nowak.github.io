@@ -8,7 +8,6 @@ $(document).ready(function() {
 
     var span1 = $("#span1");
     span1.html(span1.html().replace(/Krzysztof Nowak/, '<span style="color: #e74c3c; font-weight: bold;">$&</span>'));
-    
 
     // Controllers
     $("button.close").click(function() {
@@ -57,8 +56,12 @@ $(document).ready(function() {
             }, sleeptime);
         });
     }
+
+    function enableTyping() {
+        $("#getResume").attr("contenteditable", "true");
+        $("#getResume").focus();
+    }
     
-    // Usage
     (async function() {
         let sleeptime = 1000;
         let text = "sudo --get-info";
@@ -67,10 +70,46 @@ $(document).ready(function() {
         await sleep(250);
         $(".result").show();
         $("#spanQ").css("display", "inline-block");
-        $("#getResume").css("display", "inline-block");
-    
-        text = "sudo --get-Resume";
-        await typingEffect(text, "getResume", sleeptime);
+
+        $("#availableCommands").show();
+
+        $("#spanQ").css("display", "inline-block");
+        enableTyping();
+        document.addEventListener('keydown', async function(event){
+            if(event.key === 'Enter'){
+                const command = document.getElementById('getResume').innerHTML;
+                
+                switch(command) {
+                    case 'sudo --get-Resume':
+                        const link = document.createElement('a');
+                        link.href = 'assets/resume.pdf'; 
+                        link.setAttribute('download', '');
+                        link.download = 'Krzysztof_Nowak_Resume.pdf'; 
+                        link.target = '_blank';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        break;
+
+                    case 'sudo --show-socials':
+                        $("#socialLinks").show();
+                        break;
+
+                    case 'sudo --help':
+                        $("#availableCommands").show();
+                        break;
+
+                    default:
+                        $("#commandError").html(`Command not found: ${command}`);
+                        $("#commandError").show();
+                        await sleep(2000);
+                        $("#commandError").hide();
+                }
+
+                document.getElementById('getResume').innerHTML = '';
+                enableTyping();
+            }
+        })
     
     })();
     

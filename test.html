@@ -6,8 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="console_css.css">
     <script src="jquery/jquery-3.7.1.min.js"></script>
-    <script src="console.js"></script>
-    <script src="scripts.js"></script>
+    <script src="scripts/console.js"></script>
+    <script src="scripts/scripts.js"></script>
 </head>
 <body>
     <canvas id="matrixCanvas"></canvas>
@@ -33,6 +33,41 @@
                 <br>
                 <br><br>
             </div>
+            <div id="availableCommands" style="display: none;">
+                <div class="command-header">&nbspAvailable Commands</div>
+                <div class="command-list">
+                    <div class="command-item">
+                        <span class="command-text">sudo --get-Resume</span>
+                        <span class="command-desc">Download my current resume</span>
+                    </div>
+                    <div class="command-item">
+                        <span class="command-text">sudo --whoami</span>
+                        <span class="command-desc">Show a short description of myself</span>
+                    </div>
+                    <div class="command-item">
+                        <span class="command-text">sudo --show-socials</span>
+                        <span class="command-desc">Display my social media profiles</span>
+                    </div>
+                    <div class="command-item">
+                        <span class="command-text">sudo --awards</span>
+                        <span class="command-desc">Show my achievements</span>
+                    </div>
+                </div>
+            </div>
+            <div id="socialLinks" style="display: none;">
+                <div class="social-links">
+                    <div class="social-item">
+                        <span class="social-label">LinkedIn:</span>
+                        <a href="https://www.linkedin.com/in/krzysztof-nowak-0306a2259" target="_blank">LinkedIn_KN</a>
+                    </div>
+                    <div class="social-item">
+                        <span class="social-label">GitHub:</span>
+                        <a href="https://github.com/KrysztofN" target="_blank">GitHub_KN</a>
+                    </div>
+                </div>
+            </div>
+            <div id="commandError" style="display: none; color: red;"></div>
+
             <span id="spanQ">&nbspKrzysztof@linux-pc ~# </span>
             <span id="getResume"></span>
         </div>
